@@ -18,10 +18,11 @@ describe("Testing NFT Contract", function () {
 			const owner = await NFTcontract.owner();
 			expect(owner).to.eq(accounts[0].address);
 		});
-		it("Testing the Price assignation", async function () {
+		/*	it("Testing the Price assignation", async function () {
 			const price = ethers.utils.formatEther(await NFTcontract.priceNFT());
 			expect(price).to.eq("0.001");
-		});
+			});
+		*/
 	});
 
 	describe("Testing the mintNFT function to see if we mint an NFT successfully", async function () {
@@ -33,7 +34,14 @@ describe("Testing NFT Contract", function () {
 		});
 	});
 
-	describe("Testing the Buy Function...", async function () {
-		it();
+	describe("Testing the SetPriceNFT Functions...", async function () {
+		it("testing call is revert with 0", async function () {
+			await expect(NFTcontract.SetPriceNFT(0, 1)).to.be.revertedWith("The Price has to be more than 0");
+		});
+		it("Testing if the function revert when the caller is not the owner of the NFT", async function () {
+			// pending: I have to mint the NFT first
+			const price = ethers.utils.parseUnits("0.01", "ether");
+			await expect(NFTcontract.SetPriceNFT(price, 1)).to.be.revertedWith("You're not the owner of the NFT");
+		});
 	});
 });
