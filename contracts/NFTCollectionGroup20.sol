@@ -84,7 +84,7 @@ contract NFTCollectionGroup20 is ERC721URIStorage, ERC721Burnable {
         return idNFT_SellNFT[_tokenID].price;
     }
 
-    // function to buy an NFT, emit event buyNFT(tokenId, price, address newOwner)
+    // function to buy an NFT
     function BuyNFT(uint256 _tokenID) public payable {
         uint256 price = idNFT_SellNFT[_tokenID].price;
         require(msg.value == price, "You have to pay the right Price"); // check if the user sent the correct price, the correct owner is checked by the _transfer function
