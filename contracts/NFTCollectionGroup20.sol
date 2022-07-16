@@ -29,16 +29,6 @@ contract NFTCollectionGroup20 is ERC721URIStorage, ERC721Burnable {
 
     uint256 private priceNFT; // Price to Sell/buy the NFT
 
-    // struct to keep track of a NFT data to sell/buy
-    struct sellBuyNFT {
-        uint256 tokenId;
-        uint256 price;
-        address payable seller; // address selling the NFT
-        address payable owner; // address of the contract, the contract needs to be owner to sell the nft with permission of the seller.
-    }
-    // to keep track of the NFT for sale, every NFT
-    mapping(uint256 => sellBuyNFT) public forSellNFT;
-
     address public owner;
 
     // event to tell the API we mint an NFT succesfully
@@ -67,11 +57,6 @@ contract NFTCollectionGroup20 is ERC721URIStorage, ERC721Burnable {
     }
 
     // *************** functions to permit to buy/sell an NFT ***************
-
-    //function to set the price of the NFT
-    function SetPriceNFT(uint256 _price) public {
-        priceNFT = _price;
-    }
 
     // The following functions are overrides required by Solidity.
 
