@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-
+//contract 0x5302AC78B4520Fb681444bA95B5a9B77016705B8
 // ********** WORK IN PROGRESS **********
 
 pragma solidity ^0.8.4;
@@ -24,8 +24,11 @@ contract NFTCollectionGroup20 is ERC721URIStorage, ERC721Burnable {
         "https://ipfs.io/ipfs/Qmf7ULTdEZs8JxoH9skaJoGa4SC4udJk8LFqYa9xG8nK4i?filename=Ferrari-458.json",
         "https://ipfs.io/ipfs/QmYE1BV5D7NT9QNLDGgvSoyYoaPcK6Kf5rjo3dQqwYbUCq?filename=Mclaren-P1-8.json",
         "https://ipfs.io/ipfs/QmbRRfTMrLijZXsa3DmxWFjp5vwELcHYnnWkMY6DTm45yz?filename=Ferrari-berlinet.json",
-        "https://ipfs.io/ipfs/QmWmxTKkivEFqRvsFPSJTP1hHQnRFC4LVFfQ32yV1taND1?filename=Camaro.json"
+        "https://ipfs.io/ipfs/QmTyx2yPQpAhR1ntG9X8Dd4EuCWnU25NLd9cRBdJzKYcb8?filename=Mclaren-negro.json"
     ];
+
+    string public fullMetadata =
+        "https://ipfs.io/ipfs/QmP5QyW4phUmDEwRh5CwSQTfM3ZrX1TTBmXErmtK3t2mfQ?filename=metadata.json";
 
     uint256 private priceNFT = 0.001 ether; // price by default to Sell/buy the NFT, the user can change the price later with setPriceNFT
 
@@ -35,7 +38,7 @@ contract NFTCollectionGroup20 is ERC721URIStorage, ERC721Burnable {
         uint256 price;
         address ownerNFT; // owner address selling the NFT
     }
-    // to keep track of the NFT for sale, every NFT,
+    // to keep track of the NFT for sale, every NFT is for sale by default
     mapping(uint256 => sellBuyNFT) public idNFT_SellNFT;
 
     address public owner;
