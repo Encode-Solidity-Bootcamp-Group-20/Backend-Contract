@@ -85,5 +85,9 @@ describe("Testing NFT Contract", function () {
 				.to.emit(NFTcontract, "Transfer")
 				.withArgs(accounts[0].address, accounts[1].address, 1);
 		});
+		it("Testing if the BuyNFT change the balance of the wallets when is  execute correctly", async function () {
+			await NFTcontract.MintNFT();
+			await expect(NFTcontract.connect(accounts[1]).BuyNFT(1, { value: ethers.utils.parseEther("0.001") })).to.changeEtherBalances([accounts[0].address, accounts[1].address], [+ethers.utils.parseEther("0.001"), -ethers.utils.parseEther("0.001")]);
+		});
 	});
 });
