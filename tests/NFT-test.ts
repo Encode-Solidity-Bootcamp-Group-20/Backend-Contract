@@ -79,6 +79,11 @@ describe("Testing NFT Contract", function () {
 			await NFTcontract.MintNFT();
 			await expect(NFTcontract.BuyNFT(1, { value: ethers.utils.parseEther("0.01") })).to.be.revertedWith("You have to pay the right Price");
 		});
-		it();
+		it("Testing if the transfer of the NFT is done correctly", async function () {
+			await NFTcontract.MintNFT();
+			await expect(NFTcontract.connect(accounts[1]).BuyNFT(1, { value: ethers.utils.parseEther("0.001") }))
+				.to.emit(NFTcontract, "Transfer")
+				.withArgs(accounts[0].address, accounts[1].address, 1);
+		});
 	});
 });
